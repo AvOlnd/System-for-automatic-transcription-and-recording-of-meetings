@@ -1,0 +1,11 @@
+import pandas as pd
+first = []
+second = []
+third = []
+people = ['1', '2', '3']
+words = [first, second, third]
+data = pd.DataFrame({
+    'people': people,
+    'words': words
+})
+data.to_csv('people_words.csv', index=False, encoding='utf-8')
