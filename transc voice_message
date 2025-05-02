@@ -1,0 +1,21 @@
+import whisper
+from moviepy.editor import VideoFileClip
+import os
+
+def transcribe_audio(audio_path, model_size="small", language="ru"):
+    model = whisper.load_model(model_size)
+    result = model.transcribe(audio_path, language=language)
+    return result["text"]
+
+if __name__ == "__main__":
+    audio_file = "d.ogg"
+    try:
+        text = transcribe_audio(audio_file)
+        print("Расшифрованный текст:")
+        print(text)
+        with open("transcription.txt", "w", encoding="utf-8") as f:
+            f.write(text)
+        print("\nТекст сохранён в 'transcription.txt'")
+
+    except Exception as e:
+        print(f"Ошибка: {e}")
